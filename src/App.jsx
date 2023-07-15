@@ -1,7 +1,7 @@
 import './App.css';
 
 function App() {
-  return <div></div>;
+  return <div className="wrapper bg-faded-dark"></div>;
 }
 
 export default App;

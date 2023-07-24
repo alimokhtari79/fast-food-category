@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from '../../axios';
 import Loading from '../Loading/Loading';
 
-const CategoryList = () => {
+const CategoryList = ({ filterCategory }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,13 +25,17 @@ const CategoryList = () => {
           <Loading />
         ) : (
           <ul className="nav">
-            <li className="nav-item">
+            <li className="nav-item" onClick={() => filterCategory(null)}>
               <a href="#" className="nav-link">
                 همه فست فودها
               </a>
             </li>
             {categories.map((category) => (
-              <li className="nav-item" key={category.id}>
+              <li
+                className="nav-item"
+                key={category.id}
+                onClick={() => filterCategory(category.id)}
+              >
                 <a href="#" className="nav-link">
                   {category.name}
                 </a>

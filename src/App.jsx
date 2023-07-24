@@ -24,6 +24,10 @@ function App() {
     fetchFastFoodData();
   }, []);
 
+  const filterCategory = (categoryId) => {
+    fetchFastFoodData(categoryId);
+  };
+
   const renderContent = () => {
     if (loading) {
       return <Loading theme="dark" />;
@@ -34,7 +38,7 @@ function App() {
   return (
     <div className="wrapper bg-faded-dark">
       <Header />
-      <CategoryList />
+      <CategoryList filterCategory={filterCategory} />
       <div className="container mt-4">{renderContent()}</div>
     </div>
   );

@@ -5,6 +5,7 @@ import './App.css';
 import axios from './axios';
 import FastFoodItems from './components/FastFoodItems/FastFoodItems';
 import Loading from './components/Loading/Loading';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
   const [fastFoodItems, setFastFoodItems] = useState([]);
@@ -28,6 +29,15 @@ function App() {
     fetchFastFoodData(categoryId);
   };
 
+  const searchItems = async (term) => {
+    setLoading(true);
+    const response = await axios.get(
+      `/FastFood/search/${term ? '?term=' + term : ''}`
+    );
+    setLoading(false);
+    setFastFoodItems(response.data);
+  };
+
   const renderContent = () => {
     if (loading) {
       return <Loading theme="dark" />;
@@ -38,7 +48,9 @@ function App() {
   return (
     <div className="wrapper bg-faded-dark">
       <Header />
-      <CategoryList filterCategory={filterCategory} />
+      <CategoryList filterCategory={filterCategory}>
+        <SearchBar searchItems={searchItems} />
+      </CategoryList>
       <div className="container mt-4">{renderContent()}</div>
     </div>
   );

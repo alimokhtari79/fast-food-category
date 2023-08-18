@@ -51,7 +51,7 @@ function App() {
             برای کلید واژه فوق هیچ آیتمی یافت نشد
           </div>
           <img className="mx-auto mt-5 d-block" src={notFound} alt="notFound" />
-        </>
+        </>  
       );
     }
 

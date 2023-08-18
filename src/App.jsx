@@ -6,6 +6,7 @@ import axios from './axios';
 import FastFoodItems from './components/FastFoodItems/FastFoodItems';
 import Loading from './components/Loading/Loading';
 import SearchBar from './components/SearchBar/SearchBar';
+import notFound from './assets/images/404.png';
 
 function App() {
   const [fastFoodItems, setFastFoodItems] = useState([]);
@@ -42,6 +43,18 @@ function App() {
     if (loading) {
       return <Loading theme="dark" />;
     }
+
+    if (fastFoodItems.length === 0) {
+      return (
+        <>
+          <div className="alert alert-warning text-center">
+            برای کلید واژه فوق هیچ آیتمی یافت نشد
+          </div>
+          <img className="mx-auto mt-5 d-block" src={notFound} alt="notFound" />
+        </>
+      );
+    }
+
     return <FastFoodItems fastFoodItems={fastFoodItems} />;
   };
 
